@@ -1,0 +1,12 @@
+; DO NOT EDIT (unless you know what you are doing)
+;
+; This subdirectory is a git "subrepo", and this file is maintained by the
+; git-subrepo command. See https://github.com/ingydotnet/git-subrepo#readme
+;
+[subrepo]
+	remote = git@github.com:daotl/go-ds-leveldb.git
+	branch = master
+	commit = c38ea8715ab01b3db022492eb7b9e05f100923ed
+	parent = 1d55d2b57db665457fe427753c795fa704da801c
+	method = merge
+	cmdver = 0.4.3
