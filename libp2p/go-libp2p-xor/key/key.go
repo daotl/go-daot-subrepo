@@ -7,7 +7,7 @@ import (
 	"math/big"
 	"strings"
 
-	kbucket "github.com/libp2p/go-libp2p-kbucket"
+	kbucket "github.com/daotl/go-libp2p-kbucket"
 )
 
 func KbucketIDToKey(id kbucket.ID) Key {
