@@ -1,0 +1,12 @@
+; DO NOT EDIT (unless you know what you are doing)
+;
+; This subdirectory is a git "subrepo", and this file is maintained by the
+; git-subrepo command. See https://github.com/ingydotnet/git-subrepo#readme
+;
+[subrepo]
+	remote = git@github.com:daotl/go-libp2p-kbucket.git
+	branch = master
+	commit = a53187db59f2cf904db6ecc145c7147ec370974d
+	parent = d88b371559ffe2d2958da075214d00f3a4b07684
+	method = merge
+	cmdver = 0.4.3
