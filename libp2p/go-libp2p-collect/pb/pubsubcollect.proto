@@ -1,0 +1,88 @@
+syntax = "proto3";
+
+package pb;
+
+import "gogo.proto";
+
+option go_package="github.com/daotl/go-libp2p-collect/pb";
+option (gogoproto.sizer_all) = true;
+option (gogoproto.marshaler_all) = true;
+option (gogoproto.unmarshaler_all) = true;
+option (gogoproto.goproto_getters_all) = false;
+
+// Request is the structure transmit in overlay network, to perform a broadcast query.
+message Request {
+    // control is the routing messages.
+    RequestControl control = 1 [(gogoproto.nullable) = false];
+
+    bytes payload = 2;
+}
+
+message RequestControl {
+    // requester is the peerid of the origin node
+    string requester = 1 [(gogoproto.casttype)="github.com/libp2p/go-libp2p-core/peer.ID"];
+    // sender is the node who gives you this request
+    string sender = 2 [(gogoproto.casttype)="github.com/libp2p/go-libp2p-core/peer.ID"];
+    // seqno is the sequence number helps to generate request id
+    uint64 seqno = 3;
+
+    uint32 hops = 4;
+
+    string topic = 5;
+}
+
+message Intermediate {
+    // hit decides whether send back to the root node
+    // if hit is true, means that the current node has the wanted answer.
+    bool hit = 1;
+    // response payload, which will be assembled into a response
+    // be aware that THIS IS NOT response.marshal() result
+    bytes payload = 2;
+    // Error Message
+    Error error = 3;
+}
+
+message Error {
+    uint32 code = 1;
+    string message = 2;
+}
+
+// Response is the structure transmit in overlay network, to answer a broadcast query.
+message Response {
+    // control is the routing messages.
+    ResponseControl control = 1 [(gogoproto.nullable) = false];
+
+    bytes payload = 2;
+
+    // Error Message
+    Error error = 3;
+}
+
+message ResponseControl {
+    // response related request id.
+    string request_id = 1 [(gogoproto.casttype)="RequestID"];
+    // requester is the node who send the request
+    string requester = 2 [(gogoproto.casttype)="github.com/libp2p/go-libp2p-core/peer.ID"];
+    // responser is the node who generate the current response
+    string responser = 3 [(gogoproto.casttype)="github.com/libp2p/go-libp2p-core/peer.ID"];
+    // sender is the node who send you this response
+    string sender = 4 [(gogoproto.casttype)="github.com/libp2p/go-libp2p-core/peer.ID"];
+
+    string topic = 5;
+}
+
+message Responses {
+    repeated Responses responses = 1;
+}
+
+message Msg {
+    enum MsgType {
+        Unknown = 0;
+        Request = 1;
+        Response = 2;
+        Hit = 3;
+    }
+    MsgType type = 1;
+    Request request = 2;
+    Response response = 3;
+}
