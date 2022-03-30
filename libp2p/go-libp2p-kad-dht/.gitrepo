@@ -1,0 +1,12 @@
+; DO NOT EDIT (unless you know what you are doing)
+;
+; This subdirectory is a git "subrepo", and this file is maintained by the
+; git-subrepo command. See https://github.com/ingydotnet/git-subrepo#readme
+;
+[subrepo]
+	remote = git@github.com:daotl/go-libp2p-kad-dht.git
+	branch = master
+	commit = 90069697184b5efa9c3acf98cd3207e2843a6e6f
+	parent = e6df9ec2d152e0d2b297d1997c40391036b7a2e4
+	method = merge
+	cmdver = 0.4.3
