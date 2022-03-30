@@ -1,0 +1,12 @@
+; DO NOT EDIT (unless you know what you are doing)
+;
+; This subdirectory is a git "subrepo", and this file is maintained by the
+; git-subrepo command. See https://github.com/ingydotnet/git-subrepo#readme
+;
+[subrepo]
+	remote = git@github.com:daotl/go-libp2p-xor.git
+	branch = master
+	commit = 9f34a840f5b76c52a2f0577fe2f638c8682ba318
+	parent = 1f27437bd6e221d6b1f79b42814049865b3428dc
+	method = merge
+	cmdver = 0.4.3
