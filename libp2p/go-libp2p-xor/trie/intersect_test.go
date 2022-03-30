@@ -5,7 +5,7 @@ import (
 	"math/rand"
 	"testing"
 
-	"github.com/libp2p/go-libp2p-xor/key"
+	"github.com/daotl/go-libp2p-xor/key"
 )
 
 func TestIntersectRandom(t *testing.T) {

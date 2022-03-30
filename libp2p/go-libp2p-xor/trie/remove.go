@@ -1,7 +1,7 @@
 package trie
 
 import (
-	"github.com/libp2p/go-libp2p-xor/key"
+	"github.com/daotl/go-libp2p-xor/key"
 )
 
 // Remove removes the key q from the trie. Remove mutates the trie.

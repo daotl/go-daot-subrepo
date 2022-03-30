@@ -3,7 +3,7 @@ package trie
 import (
 	"testing"
 
-	"github.com/libp2p/go-libp2p-xor/key"
+	"github.com/daotl/go-libp2p-xor/key"
 )
 
 func TestInsertRemove(t *testing.T) {

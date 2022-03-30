@@ -3,7 +3,7 @@ package trie
 import (
 	"encoding/json"
 
-	"github.com/libp2p/go-libp2p-xor/key"
+	"github.com/daotl/go-libp2p-xor/key"
 )
 
 // Trie is a trie for equal-length bit vectors, which stores values only in the leaves.

@@ -1,7 +1,7 @@
 package trie
 
 import (
-	"github.com/libp2p/go-libp2p-xor/key"
+	"github.com/daotl/go-libp2p-xor/key"
 )
 
 func IntersectKeySlices(p, q []key.Key) []key.Key {

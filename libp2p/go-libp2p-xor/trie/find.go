@@ -1,7 +1,7 @@
 package trie
 
 import (
-	"github.com/libp2p/go-libp2p-xor/key"
+	"github.com/daotl/go-libp2p-xor/key"
 )
 
 // Find looks for the key q in the trie.

@@ -4,8 +4,8 @@ import (
 	"encoding/json"
 	"sort"
 
-	"github.com/libp2p/go-libp2p-xor/key"
-	"github.com/libp2p/go-libp2p-xor/trie"
+	"github.com/daotl/go-libp2p-xor/key"
+	"github.com/daotl/go-libp2p-xor/trie"
 )
 
 // TableHealthReport describes the discrepancy between a node's routing table from the theoretical ideal,

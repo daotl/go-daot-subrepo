@@ -1,11 +1,11 @@
 # go-libp2p-xor
 
+Fork of [libp2p/go-libp2p-xor](https://github.com/libp2p/go-libp2p-xor) by DAOT Labs.
+
 [![](https://img.shields.io/badge/made%20by-Protocol%20Labs-blue.svg?style=flat-square)](https://protocol.ai)
-[![](https://img.shields.io/badge/project-libp2p-yellow.svg?style=flat-square)](https://libp2p.io)
-[![](https://img.shields.io/badge/freenode-%23libp2p-yellow.svg?style=flat-square)](http://webchat.freenode.net/?channels=%23yellow)
-[![GoDoc](https://godoc.org/github.com/libp2p/go-libp2p-xor?status.svg)](https://godoc.org/github.com/libp2p/go-libp2p-xor)
-[![Build Status](https://travis-ci.org/libp2p/go-libp2p-xor.svg?branch=master)](https://travis-ci.org/libp2p/go-libp2p-xor)
-[![Discourse posts](https://img.shields.io/discourse/https/discuss.libp2p.io/posts.svg)](https://discuss.libp2p.io)
+[![](https://img.shields.io/badge/project-DAOT-red.svg?style=flat-square)](https://daot.io)
+[![Go Reference](https://pkg.go.dev/badge/github.com/daotl/go-libp2p-xor.svg)](https://pkg.go.dev/github.com/daotl/go-libp2p-xor)
+[![Build Status](https://travis-ci.org/daotl/go-libp2p-xor.svg?branch=master)](https://travis-ci.org/daotl/go-libp2p-xor)
 
 > Implementation of XOR tries
 
@@ -23,4 +23,8 @@ Check out our [contributing document](https://github.com/libp2p/community/blob/m
 
 ## License
 
-[MIT](LICENSE) © Protocol Labs Inc.
+[MIT](LICENSE)
+
+Copyright for the modified portions of this fork are held by [DAOT Labs, 2022].
+All other portions of this fork are held by [Protocol Labs Inc., 2020] as part of the original [go-libp2p-xor](https://github.com/libp2p/go-libp2p-xor) project.
+All right reserved.
