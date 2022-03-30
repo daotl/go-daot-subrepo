@@ -6,7 +6,7 @@
 [subrepo]
 	remote = git@github.com:daotl/go-libp2p-xor.git
 	branch = master
-	commit = 8fc1c5b35f6aa19119e986f67456f2f536c5584c
-	parent = eeb12663916a3d9cd69125caedae33af6a8d58cf
+	commit = 8f8724867329ac7c5e37d628c1fa603cc0b48ea8
+	parent = 6304ceb15f7d37f0637af8b807ce36cf71819035
 	method = merge
 	cmdver = 0.4.3
