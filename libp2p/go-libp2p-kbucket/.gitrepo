@@ -6,7 +6,7 @@
 [subrepo]
 	remote = git@github.com:daotl/go-libp2p-kbucket.git
 	branch = master
-	commit = a53187db59f2cf904db6ecc145c7147ec370974d
-	parent = d88b371559ffe2d2958da075214d00f3a4b07684
+	commit = 8981ab3e3f80fc9464b26327bfcfa6eb3416121a
+	parent = 481e3d9701bf5eecdc492b38f05bc1b5b951799f
 	method = merge
 	cmdver = 0.4.3
