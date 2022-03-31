@@ -2,11 +2,11 @@ module github.com/daotl/go-libp2p-kad-dht
 
 go 1.16
 
-replace github.com/libp2p/go-libp2p-kad-dht => ./
-
 replace github.com/lucas-clemente/quic-go => github.com/lucas-clemente/quic-go v0.26.0
 
 require (
+	github.com/daotl/go-libp2p-kbucket v0.4.7-daot.4
+	github.com/daotl/go-libp2p-xor v0.1.0-daot.1
 	github.com/gogo/protobuf v1.3.2
 	github.com/google/gopacket v1.1.19
 	github.com/google/uuid v1.3.0
@@ -23,13 +23,11 @@ require (
 	github.com/libp2p/go-eventbus v0.2.1
 	github.com/libp2p/go-libp2p v0.16.0
 	github.com/libp2p/go-libp2p-core v0.11.0
-	github.com/libp2p/go-libp2p-kbucket v0.4.7
 	github.com/libp2p/go-libp2p-peerstore v0.4.0
 	github.com/libp2p/go-libp2p-record v0.1.3
 	github.com/libp2p/go-libp2p-routing-helpers v0.2.3
 	github.com/libp2p/go-libp2p-swarm v0.8.0
 	github.com/libp2p/go-libp2p-testing v0.5.0
-	github.com/libp2p/go-libp2p-xor v0.0.0-20210714161855-5c005aca55db
 	github.com/libp2p/go-msgio v0.1.0
 	github.com/libp2p/go-netroute v0.1.6
 	github.com/multiformats/go-base32 v0.0.3

@@ -14,7 +14,7 @@ import (
 	"github.com/libp2p/go-msgio/protoio"
 
 	pb "github.com/daotl/go-libp2p-kad-dht/pb"
-	kbucket "github.com/libp2p/go-libp2p-kbucket"
+	kbucket "github.com/daotl/go-libp2p-kbucket"
 )
 
 var logger = logging.Logger("dht-crawler")
@@ -25,6 +25,14 @@ type Crawler struct {
 	connectTimeout time.Duration
 	host           host.Host
 	dhtRPC         *pb.ProtocolMessenger
+
+	/* #DAOT */
+	// kbucket.RoutingTable.considerLatency
+	considerLatency bool
+	// kbucket.RoutingTable.avgBitsImprovedPerStep
+	avgBitsImprovedPerStep float64
+	// kbucket.RoutingTable.avgRoundTripsPerStepWithNewPeer
+	avgRoundTripsPerStepWithNewPeer float64
 }
 
 // New creates a new Crawler
@@ -45,10 +53,13 @@ func New(host host.Host, opts ...Option) (*Crawler, error) {
 	}
 
 	return &Crawler{
-		parallelism:    o.parallelism,
-		connectTimeout: o.connectTimeout,
-		host:           host,
-		dhtRPC:         pm,
+		parallelism:                     o.parallelism,
+		connectTimeout:                  o.connectTimeout,
+		host:                            host,
+		dhtRPC:                          pm,
+		considerLatency:                 o.considerLatency,
+		avgBitsImprovedPerStep:          o.avgBitsImprovedPerStep,
+		avgRoundTripsPerStepWithNewPeer: o.avgRoundTripsPerStepWithNewPeer,
 	}, nil
 }
 
@@ -212,7 +223,8 @@ type queryResult struct {
 }
 
 func (c *Crawler) queryPeer(ctx context.Context, nextPeer peer.ID) *queryResult {
-	tmpRT, err := kbucket.NewRoutingTable(20, kbucket.ConvertPeerID(nextPeer), time.Hour, c.host.Peerstore(), time.Hour, nil)
+	tmpRT, err := kbucket.NewRoutingTable(20, kbucket.ConvertPeerID(nextPeer), time.Hour, c.host.Peerstore(), c.host.Network(), time.Hour, nil,
+		c.considerLatency, c.avgBitsImprovedPerStep, c.avgRoundTripsPerStepWithNewPeer)
 	if err != nil {
 		logger.Errorf("error creating rt for peer %v : %v", nextPeer, err)
 		return &queryResult{nextPeer, nil, err}

@@ -8,7 +8,7 @@ import (
 
 	"github.com/libp2p/go-libp2p-core/test"
 
-	kb "github.com/libp2p/go-libp2p-kbucket"
+	kb "github.com/daotl/go-libp2p-kbucket"
 	pstore "github.com/libp2p/go-libp2p-peerstore"
 
 	"github.com/stretchr/testify/require"
@@ -55,7 +55,7 @@ func TestSkipRefreshOnGapCpls(t *testing.T) {
 
 	// when 2*gapcpl < maxCpl
 	// gap is 2 and max is 10
-	rt, err := kb.NewRoutingTable(2, kb.ConvertPeerID(local), time.Hour, pstore.NewMetrics(), 100*time.Hour, nil)
+	rt, err := kb.NewRoutingTable(2, kb.ConvertPeerID(local), time.Hour, pstore.NewMetrics(), nil, 100*time.Hour, nil, false, 0, 0)
 	require.NoError(t, err)
 	r := &RtRefreshManager{ctx: ctx, rt: rt, refreshKeyGenFnc: kfnc, dhtPeerId: local}
 	icpl := uint(2)
@@ -79,7 +79,7 @@ func TestSkipRefreshOnGapCpls(t *testing.T) {
 	}
 
 	// when 2 * (gapcpl + 1) > maxCpl
-	rt, err = kb.NewRoutingTable(2, kb.ConvertPeerID(local), time.Hour, pstore.NewMetrics(), 100*time.Hour, nil)
+	rt, err = kb.NewRoutingTable(2, kb.ConvertPeerID(local), time.Hour, pstore.NewMetrics(), nil, 100*time.Hour, nil, false, 0, 0)
 	require.NoError(t, err)
 	r = &RtRefreshManager{ctx: ctx, rt: rt, refreshKeyGenFnc: kfnc, dhtPeerId: local}
 	icpl = uint(6)

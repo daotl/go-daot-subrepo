@@ -10,7 +10,7 @@ import (
 	"github.com/libp2p/go-libp2p-core/peer"
 	"github.com/libp2p/go-libp2p-core/protocol"
 
-	"github.com/libp2p/go-libp2p-kbucket/peerdiversity"
+	"github.com/daotl/go-libp2p-kbucket/peerdiversity"
 	record "github.com/libp2p/go-libp2p-record"
 
 	ds "github.com/ipfs/go-datastore"
@@ -306,6 +306,42 @@ func disableFixLowPeersRoutine(t *testing.T) Option {
 func forceAddressUpdateProcessing(t *testing.T) Option {
 	return func(c *dhtcfg.Config) error {
 		c.TestAddressUpdateProcessing = true
+		return nil
+	}
+}
+
+/* DAOT */
+
+// If enabled, DHT will find the nearest peers to query by taking into account not only the xor distance to the target peer,
+// but also the latency to the local peer (measured in RTT).
+// This strategy can be tuned with AvgBitsImprovedPerStep and AvgRoundTripPerStepWithNewPeer.
+//
+// Defaults to disabled.
+func EnableConsiderLatency() Option {
+	return func(c *dhtcfg.Config) error {
+		c.RoutingTable.ConsiderLatency = true
+		return nil
+	}
+}
+
+// AvgBitsImprovedPerStep configures the estimated average number of bits improved per lookup step.
+// If not set will use the default value calculated using the bucket size.
+func AvgBitsImprovedPerStep(avgBitsImprovedPerStep float64) Option {
+	return func(c *dhtcfg.Config) error {
+		c.RoutingTable.AvgBitsImprovedPerStep = avgBitsImprovedPerStep
+		return nil
+	}
+}
+
+// AvgRoundTripPerStepWithNewPeer configures the average RTT count needed per lookup step to connect to a new peer and execute the lookup query,
+// varies among transport protocols, reference values:
+// For TCP+TLS1.3 : 4
+// For QUIC : 2
+//
+// If not set will default to 4 (TCP+TLS1.3 settings) which will value the xor distance more in sorting.
+func AvgRoundTripPerStepWithNewPeer(avgRoundTripsPerStepWithNewPeer float64) Option {
+	return func(c *dhtcfg.Config) error {
+		c.RoutingTable.AvgRoundTripsPerStepWithNewPeer = avgRoundTripsPerStepWithNewPeer
 		return nil
 	}
 }

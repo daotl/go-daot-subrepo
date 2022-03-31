@@ -29,10 +29,10 @@ import (
 	test "github.com/daotl/go-libp2p-kad-dht/internal/testing"
 	pb "github.com/daotl/go-libp2p-kad-dht/pb"
 
+	kb "github.com/daotl/go-libp2p-kbucket"
 	"github.com/ipfs/go-cid"
 	detectrace "github.com/ipfs/go-detect-race"
 	u "github.com/ipfs/go-ipfs-util"
-	kb "github.com/libp2p/go-libp2p-kbucket"
 	record "github.com/libp2p/go-libp2p-record"
 	swarmt "github.com/libp2p/go-libp2p-swarm/testing"
 	bhost "github.com/libp2p/go-libp2p/p2p/host/basic"
@@ -1446,10 +1446,12 @@ func testFindPeerQuery(t *testing.T,
 
 	sort.Sort(peer.IDSlice(outpeers))
 
-	exp := kb.SortClosestPeers(peers, rtval)[:minInt(guy.bucketSize, len(peers))]
+	closest, err := dhts[0].routingTable.SortClosestPeers(peers, rtval)
+	require.NoError(t, err)
+	exp := closest[:minInt(guy.bucketSize, len(peers))]
 	t.Logf("got %d peers", len(outpeers))
-	got := kb.SortClosestPeers(outpeers, rtval)
-
+	got, err := dhts[0].routingTable.SortClosestPeers(outpeers, rtval)
+	require.NoError(t, err)
 	assert.EqualValues(t, exp, got)
 }
 

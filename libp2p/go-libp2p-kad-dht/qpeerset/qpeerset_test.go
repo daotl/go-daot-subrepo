@@ -6,7 +6,7 @@ import (
 	"github.com/libp2p/go-libp2p-core/peer"
 	"github.com/libp2p/go-libp2p-core/test"
 
-	kb "github.com/libp2p/go-libp2p-kbucket"
+	kb "github.com/daotl/go-libp2p-kbucket"
 
 	"github.com/stretchr/testify/require"
 )

@@ -9,7 +9,7 @@ import (
 	"github.com/libp2p/go-libp2p-core/host"
 	"github.com/libp2p/go-libp2p-core/peer"
 
-	kbucket "github.com/libp2p/go-libp2p-kbucket"
+	kbucket "github.com/daotl/go-libp2p-kbucket"
 
 	"github.com/hashicorp/go-multierror"
 	logging "github.com/ipfs/go-log"

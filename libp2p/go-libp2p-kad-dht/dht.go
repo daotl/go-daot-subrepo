@@ -22,8 +22,8 @@ import (
 	pb "github.com/daotl/go-libp2p-kad-dht/pb"
 	"github.com/daotl/go-libp2p-kad-dht/providers"
 	"github.com/daotl/go-libp2p-kad-dht/rtrefresh"
-	kb "github.com/libp2p/go-libp2p-kbucket"
-	"github.com/libp2p/go-libp2p-kbucket/peerdiversity"
+	kb "github.com/daotl/go-libp2p-kbucket"
+	"github.com/daotl/go-libp2p-kbucket/peerdiversity"
 	record "github.com/libp2p/go-libp2p-record"
 	recpb "github.com/libp2p/go-libp2p-record/pb"
 
@@ -392,7 +392,8 @@ func makeRoutingTable(dht *IpfsDHT, cfg dhtcfg.Config, maxLastSuccessfulOutbound
 		filter = df
 	}
 
-	rt, err := kb.NewRoutingTable(cfg.BucketSize, dht.selfKey, time.Minute, dht.host.Peerstore(), maxLastSuccessfulOutboundThreshold, filter)
+	rt, err := kb.NewRoutingTable(cfg.BucketSize, dht.selfKey, time.Minute, dht.host.Peerstore(), dht.Host().Network(), maxLastSuccessfulOutboundThreshold, filter,
+		cfg.RoutingTable.ConsiderLatency, cfg.RoutingTable.AvgBitsImprovedPerStep, cfg.RoutingTable.AvgRoundTripsPerStepWithNewPeer)
 	if err != nil {
 		return nil, err
 	}

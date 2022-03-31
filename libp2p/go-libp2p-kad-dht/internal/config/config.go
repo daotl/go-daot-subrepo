@@ -5,13 +5,13 @@ import (
 	"time"
 
 	"github.com/daotl/go-libp2p-kad-dht/providers"
+	"github.com/daotl/go-libp2p-kbucket/peerdiversity"
 	ds "github.com/ipfs/go-datastore"
 	dssync "github.com/ipfs/go-datastore/sync"
 	"github.com/ipfs/go-ipns"
 	"github.com/libp2p/go-libp2p-core/host"
 	"github.com/libp2p/go-libp2p-core/peer"
 	"github.com/libp2p/go-libp2p-core/protocol"
-	"github.com/libp2p/go-libp2p-kbucket/peerdiversity"
 	record "github.com/libp2p/go-libp2p-record"
 )
 
@@ -55,6 +55,11 @@ type Config struct {
 		CheckInterval       time.Duration
 		PeerFilter          RouteTableFilterFunc
 		DiversityFilter     peerdiversity.PeerIPGroupFilter
+
+		/* #DAOT */
+		ConsiderLatency                 bool
+		AvgBitsImprovedPerStep          float64
+		AvgRoundTripsPerStepWithNewPeer float64
 	}
 
 	BootstrapPeers func() []peer.AddrInfo
@@ -115,6 +120,12 @@ var Defaults = func(o *Config) error {
 	o.RoutingTable.AutoRefresh = true
 	o.RoutingTable.PeerFilter = EmptyRTFilter
 	o.MaxRecordAge = time.Hour * 36
+
+	/* #DAOT */
+	o.RoutingTable.ConsiderLatency = false
+	// Use the default values from `daotl/go-libp2p-kbucket`.
+	o.RoutingTable.AvgBitsImprovedPerStep = 0
+	o.RoutingTable.AvgRoundTripsPerStepWithNewPeer = 0
 
 	o.BucketSize = defaultBucketSize
 	o.Concurrency = 10

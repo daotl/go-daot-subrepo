@@ -9,14 +9,14 @@ import (
 
 	dht "github.com/daotl/go-libp2p-kad-dht"
 
+	kb "github.com/daotl/go-libp2p-kbucket"
+	"github.com/daotl/go-libp2p-kbucket/peerdiversity"
 	"github.com/ipfs/go-cid"
 	ci "github.com/libp2p/go-libp2p-core/crypto"
 	"github.com/libp2p/go-libp2p-core/host"
 	"github.com/libp2p/go-libp2p-core/peer"
 	"github.com/libp2p/go-libp2p-core/protocol"
 	"github.com/libp2p/go-libp2p-core/routing"
-	kb "github.com/libp2p/go-libp2p-kbucket"
-	"github.com/libp2p/go-libp2p-kbucket/peerdiversity"
 	helper "github.com/libp2p/go-libp2p-routing-helpers"
 	ma "github.com/multiformats/go-multiaddr"
 

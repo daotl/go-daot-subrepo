@@ -8,7 +8,7 @@ import (
 	"github.com/libp2p/go-libp2p-core/peer"
 	"github.com/libp2p/go-libp2p-core/routing"
 
-	kb "github.com/libp2p/go-libp2p-kbucket"
+	kb "github.com/daotl/go-libp2p-kbucket"
 )
 
 // GetClosestPeers is a Kademlia 'node lookup' operation. Returns a channel of

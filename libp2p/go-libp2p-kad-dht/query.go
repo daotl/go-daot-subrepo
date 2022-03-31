@@ -14,8 +14,8 @@ import (
 	"github.com/libp2p/go-libp2p-core/routing"
 
 	"github.com/daotl/go-libp2p-kad-dht/qpeerset"
+	kb "github.com/daotl/go-libp2p-kbucket"
 	"github.com/google/uuid"
-	kb "github.com/libp2p/go-libp2p-kbucket"
 )
 
 // ErrNoPeersQueried is returned when we failed to connect to any peers.
@@ -230,7 +230,11 @@ func (q *query) constructLookupResult(target kb.ID) *lookupWithFollowupResult {
 	}
 
 	// get the top K overall peers
-	sortedPeers := kb.SortClosestPeers(peers, target)
+	sortedPeers, err := q.dht.routingTable.SortClosestPeers(peers, target)
+	// If failed (should have used kb.SortClosestPeersByDistanceAndLatency), fall back and retry with kb.SortClosestPeersByDistance
+	if err != nil {
+		sortedPeers = kb.SortClosestPeersByDistance(peers, target)
+	}
 	if len(sortedPeers) > q.dht.bucketSize {
 		sortedPeers = sortedPeers[:q.dht.bucketSize]
 	}

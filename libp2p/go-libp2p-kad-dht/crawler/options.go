@@ -14,6 +14,14 @@ type options struct {
 	parallelism    int
 	connectTimeout time.Duration
 	perMsgTimeout  time.Duration
+
+	/* #DAOT */
+	// kbucket.RoutingTable.considerLatency
+	considerLatency bool
+	// kbucket.RoutingTable.avgBitsImprovedPerStep
+	avgBitsImprovedPerStep float64
+	// kbucket.RoutingTable.avgRoundTripsPerStepWithNewPeer
+	avgRoundTripsPerStepWithNewPeer float64
 }
 
 // defaults are the default crawler options. This option will be automatically
@@ -23,6 +31,11 @@ var defaults = func(o *options) error {
 	o.parallelism = 1000
 	o.connectTimeout = time.Second * 5
 	o.perMsgTimeout = time.Second * 5
+
+	o.considerLatency = false
+	// Use the default values from `daotl/go-libp2p-kbucket`.
+	o.avgBitsImprovedPerStep = 0
+	o.avgRoundTripsPerStepWithNewPeer = 0
 
 	return nil
 }
@@ -55,6 +68,40 @@ func WithMsgTimeout(timeout time.Duration) Option {
 func WithConnectTimeout(timeout time.Duration) Option {
 	return func(o *options) error {
 		o.connectTimeout = timeout
+		return nil
+	}
+}
+
+// If enabled, DHT will find the nearest peers to query by taking into account not only the xor distance to the target peer,
+// but also the latency to the local peer (measured in RTT).
+// This strategy can be tuned with AvgBitsImprovedPerStep and AvgRoundTripPerStepWithNewPeer.
+//
+// Defaults to disabled.
+func EnableConsiderLatency() Option {
+	return func(o *options) error {
+		o.considerLatency = true
+		return nil
+	}
+}
+
+// AvgBitsImprovedPerStep configures the estimated average number of bits improved per lookup step.
+// If not set will use the default value calculated using the bucket size.
+func AvgBitsImprovedPerStep(avgBitsImprovedPerStep float64) Option {
+	return func(o *options) error {
+		o.avgBitsImprovedPerStep = avgBitsImprovedPerStep
+		return nil
+	}
+}
+
+// AvgRoundTripPerStepWithNewPeer configures the average RTT count needed per lookup step to connect to a new peer and execute the lookup query,
+// varies among transport protocols, reference values:
+// For TCP+TLS1.3 : 4
+// For QUIC : 2
+//
+// If not set will default to 4 (TCP+TLS1.3 settings) which will value the xor distance more in sorting.
+func AvgRoundTripPerStepWithNewPeer(avgRoundTripsPerStepWithNewPeer float64) Option {
+	return func(o *options) error {
+		o.avgRoundTripsPerStepWithNewPeer = avgRoundTripsPerStepWithNewPeer
 		return nil
 	}
 }

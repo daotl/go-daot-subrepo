@@ -34,14 +34,14 @@ import (
 	"github.com/daotl/go-libp2p-kad-dht/internal/net"
 	dht_pb "github.com/daotl/go-libp2p-kad-dht/pb"
 	"github.com/daotl/go-libp2p-kad-dht/providers"
-	kb "github.com/libp2p/go-libp2p-kbucket"
+	kb "github.com/daotl/go-libp2p-kbucket"
 
 	record "github.com/libp2p/go-libp2p-record"
 	recpb "github.com/libp2p/go-libp2p-record/pb"
 
-	"github.com/libp2p/go-libp2p-xor/kademlia"
-	kadkey "github.com/libp2p/go-libp2p-xor/key"
-	"github.com/libp2p/go-libp2p-xor/trie"
+	"github.com/daotl/go-libp2p-xor/kademlia"
+	kadkey "github.com/daotl/go-libp2p-xor/key"
+	"github.com/daotl/go-libp2p-xor/trie"
 	"go.opentelemetry.io/otel"
 	"go.opentelemetry.io/otel/attribute"
 	"go.opentelemetry.io/otel/trace"
@@ -987,7 +987,8 @@ func (dht *FullRT) bulkMessageSend(ctx context.Context, keys []peer.ID, fn func(
 		sortedKeys = append(sortedKeys, k)
 	}
 
-	sortedKeys = kb.SortClosestPeers(sortedKeys, kb.ID(make([]byte, 32)))
+	// TODO: Support kb.SortClosestPeersByDistanceAndLatency
+	sortedKeys = kb.SortClosestPeersByDistance(sortedKeys, kb.ID(make([]byte, 32)))
 
 	dht.kMapLk.RLock()
 	numPeers := len(dht.keyToPeerMap)
