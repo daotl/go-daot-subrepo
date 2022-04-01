@@ -18,7 +18,10 @@ import (
 // DefaultPrefix is the application specific prefix attached to all DHT protocols by default.
 const DefaultPrefix protocol.ID = "/ipfs"
 
-const defaultBucketSize = 20
+const (
+	defaultBucketSize       = 20
+	defaultProtectedBuckets = 2
+)
 
 // ModeOpt describes what mode the dht should operate in
 type ModeOpt int
@@ -39,6 +42,7 @@ type Config struct {
 	ProtocolPrefix     protocol.ID
 	V1ProtocolOverride protocol.ID
 	BucketSize         int
+	ProtectedBuckets   int // #DAOT
 	Concurrency        int
 	Resiliency         int
 	MaxRecordAge       time.Duration
@@ -128,6 +132,7 @@ var Defaults = func(o *Config) error {
 	o.RoutingTable.AvgRoundTripsPerStepWithNewPeer = 0
 
 	o.BucketSize = defaultBucketSize
+	o.ProtectedBuckets = defaultProtectedBuckets
 	o.Concurrency = 10
 	o.Resiliency = 3
 

@@ -173,6 +173,20 @@ func BucketSize(bucketSize int) Option {
 	}
 }
 
+// ProtectedBuckets sets the number of the shortest common prefix length buckets in which all peers will be protected.
+// Set to -1 to protect all buckets.
+// Set to 0 to completely disable protecting any buckets..
+//
+// Defaults to defaultProtectedBuckets.
+//
+// #DAOT
+func ProtectedBuckets(n int) Option {
+	return func(c *dhtcfg.Config) error {
+		c.ProtectedBuckets = n
+		return nil
+	}
+}
+
 // Concurrency configures the number of concurrent requests (alpha in the Kademlia paper) for a given query path.
 //
 // The default value is 10.

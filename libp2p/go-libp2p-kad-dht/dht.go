@@ -64,8 +64,7 @@ const (
 )
 
 const (
-	kbucketTag       = "kbucket"
-	protectedBuckets = 2
+	kbucketTag = "kbucket"
 )
 
 type addPeerRTReq struct {
@@ -402,7 +401,8 @@ func makeRoutingTable(dht *IpfsDHT, cfg dhtcfg.Config, maxLastSuccessfulOutbound
 
 	rt.PeerAdded = func(p peer.ID) {
 		commonPrefixLen := kb.CommonPrefixLen(dht.selfKey, kb.ConvertPeerID(p))
-		if commonPrefixLen < protectedBuckets {
+		// -1 indicates protecting all buckets
+		if commonPrefixLen < cfg.ProtectedBuckets || cfg.ProtectedBuckets == -1 {
 			cmgr.Protect(p, kbucketTag)
 		} else {
 			cmgr.TagPeer(p, kbucketTag, baseConnMgrScore)
