@@ -7,6 +7,6 @@
 	remote = git@github.com:daotl/go-libp2p-kad-dht.git
 	branch = master
 	commit = f939750ead38f90e481ea1e9958ab27f5c72643d
-	parent = 3458f26cdab5c511d5e4735e719852f399206a20
+	parent = 8805e5387a1e547a6eded0a70bc57e22e8518a06
 	method = merge
 	cmdver = 0.4.3
