@@ -1,0 +1,20 @@
+go 1.18
+
+use (
+	./datastore/go-datastore
+	./datastore/go-datastore-extensions
+	./datastore/go-ds-badger3
+	./datastore/go-ds-bbolt
+	./datastore/go-ds-flatfs
+	./datastore/go-ds-leveldb
+	./libp2p/go-libp2p-collect
+	./libp2p/go-libp2p-kad-dht
+	./libp2p/go-libp2p-kbucket
+	./libp2p/go-libp2p-pubsub
+	./libp2p/go-libp2p-xor
+)
+
+replace (
+	github.com/libp2p/go-libp2p-kad-dht => ./libp2p/go-libp2p-kad-dht
+	github.com/libp2p/go-libp2p-pubsub => ./libp2p/go-libp2p-pubsub
+)

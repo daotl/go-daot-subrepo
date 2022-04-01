@@ -1,0 +1,12 @@
+; DO NOT EDIT (unless you know what you are doing)
+;
+; This subdirectory is a git "subrepo", and this file is maintained by the
+; git-subrepo command. See https://github.com/ingydotnet/git-subrepo#readme
+;
+[subrepo]
+	remote = git@github.com:daotl/go-datastore.git
+	branch = master
+	commit = 8fa44f5ab54099cbbf2bdd9af51e818eec986e2e
+	parent = 50775ded5def017de8c24ba1039fe0d92314319e
+	method = merge
+	cmdver = 0.4.3

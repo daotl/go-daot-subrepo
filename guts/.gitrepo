@@ -1,0 +1,12 @@
+; DO NOT EDIT (unless you know what you are doing)
+;
+; This subdirectory is a git "subrepo", and this file is maintained by the
+; git-subrepo command. See https://github.com/ingydotnet/git-subrepo#readme
+;
+[subrepo]
+	remote = git@github.com:daotl/guts.git
+	branch = master
+	commit = 3458f26cdab5c511d5e4735e719852f399206a20
+	parent = 8c9a147ca0a17c749726ae10f4b36dfc8af72a44
+	method = merge
+	cmdver = 0.4.3

@@ -1,0 +1,12 @@
+; DO NOT EDIT (unless you know what you are doing)
+;
+; This subdirectory is a git "subrepo", and this file is maintained by the
+; git-subrepo command. See https://github.com/ingydotnet/git-subrepo#readme
+;
+[subrepo]
+	remote = git@github.com:daotl/go-ds-badger3.git
+	branch = master
+	commit = d7d43328b0624bc071127a9352565b4c8e43dd82
+	parent = c42e4f18bd428dc849062ad8a402093746f03c9e
+	method = merge
+	cmdver = 0.4.3
