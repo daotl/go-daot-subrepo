@@ -6,7 +6,7 @@
 [subrepo]
 	remote = git@github.com:daotl/go-libp2p-kad-dht.git
 	branch = master
-	commit = 4e4b98b3b4d061d8edb23d3ec9d8cff252245f97
-	parent = 47e5ac7d54c30c219abc3f1811e5748676b5749f
+	commit = f939750ead38f90e481ea1e9958ab27f5c72643d
+	parent = 3458f26cdab5c511d5e4735e719852f399206a20
 	method = merge
 	cmdver = 0.4.3
