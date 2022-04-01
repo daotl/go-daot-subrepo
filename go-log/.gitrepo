@@ -1,0 +1,12 @@
+; DO NOT EDIT (unless you know what you are doing)
+;
+; This subdirectory is a git "subrepo", and this file is maintained by the
+; git-subrepo command. See https://github.com/ingydotnet/git-subrepo#readme
+;
+[subrepo]
+	remote = git@github.com:daotl/go-log.git
+	branch = master
+	commit = fb8e2ed9c89028bf608685e93a100f9f0e2d33fc
+	parent = 1fb2e14299920331653bb588cdfb14f182b9db62
+	method = merge
+	cmdver = 0.4.3
