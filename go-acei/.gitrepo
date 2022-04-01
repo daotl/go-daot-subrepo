@@ -1,0 +1,12 @@
+; DO NOT EDIT (unless you know what you are doing)
+;
+; This subdirectory is a git "subrepo", and this file is maintained by the
+; git-subrepo command. See https://github.com/ingydotnet/git-subrepo#readme
+;
+[subrepo]
+	remote = git@github.com:daotl/go-acei.git
+	branch = master
+	commit = 00adcb5085411667bf3375e67aba030a35c18967
+	parent = c8646bb4c8fd113286a5da4f532e3e8ede4b7122
+	method = merge
+	cmdver = 0.4.3
