@@ -1,0 +1,12 @@
+; DO NOT EDIT (unless you know what you are doing)
+;
+; This subdirectory is a git "subrepo", and this file is maintained by the
+; git-subrepo command. See https://github.com/ingydotnet/git-subrepo#readme
+;
+[subrepo]
+	remote = git@github.com:daotl/go-doubl.git
+	branch = master
+	commit = 53dedef5069186d9a6e61913bcaa25f83b0a397f
+	parent = eaa0880b005232af9c91bf7201ef96559c1c5ee2
+	method = merge
+	cmdver = 0.4.3
