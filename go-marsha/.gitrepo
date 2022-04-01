@@ -1,0 +1,12 @@
+; DO NOT EDIT (unless you know what you are doing)
+;
+; This subdirectory is a git "subrepo", and this file is maintained by the
+; git-subrepo command. See https://github.com/ingydotnet/git-subrepo#readme
+;
+[subrepo]
+	remote = git@github.com:daotl/go-marsha.git
+	branch = master
+	commit = d03ebde653ed72e092686c75d085f72e8910cd43
+	parent = 9bfea779ded1271f53669471316cfba94fefc2f7
+	method = merge
+	cmdver = 0.4.3

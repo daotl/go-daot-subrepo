@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+package protobuf;
+
+option go_package = "github.com/daotl/go-marsha/protobuf";
+
+message Test {
+  string data = 1;
+}
