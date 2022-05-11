@@ -6,7 +6,7 @@
 [subrepo]
 	remote = git@github.com:daotl/guts.git
 	branch = master
-	commit = 3458f26cdab5c511d5e4735e719852f399206a20
-	parent = 8c9a147ca0a17c749726ae10f4b36dfc8af72a44
+	commit = 517aab8ce9ee90d67536b5f8f10493307d734ed2
+	parent = f3b93d60412e4e6c722287a1ae1b09e5bf651452
 	method = merge
 	cmdver = 0.4.3
